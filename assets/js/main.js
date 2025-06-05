@@ -207,3 +207,30 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+
+
+
+// karter
+// ------0-999-無限-----
+function replaceWithInfinity() {
+  const counter = document.getElementById("infinity-counter");
+
+  // 如果不存在或已經被替換過，就跳過
+  if (!counter || counter.dataset.infinityReplaced === "true") return;
+
+  const checkValue = setInterval(function () {
+    if (counter.textContent === "999") {
+      counter.textContent = "∞";
+      counter.dataset.infinityReplaced = "true"; // 標記已替換
+      clearInterval(checkValue);
+    }
+  }, 100);
+}
+
+// 第一次載入執行
+document.addEventListener("DOMContentLoaded", replaceWithInfinity);
+
+// 如果你使用 SPA 或動態區塊更新，也應該呼叫這個函式
+// 例如頁面切換、modal 開啟後等
+
+

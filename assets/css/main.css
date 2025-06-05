@@ -12,29 +12,41 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --heading-font: "Raleway",  sans-serif;
-  --nav-font: "Inter",  sans-serif;
+  --default-font: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway", sans-serif;
+  --nav-font: "Inter", sans-serif;
 }
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
-:root { 
-  --background-color: #ffffff; /* Background color for the entire website, including individual sections */
-  --default-color: #444444; /* Default color used for the majority of the text content across the entire website */
-  --heading-color: #273d4e; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #ff4a17; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
-  --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
-  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+:root {
+  --background-color: #ffffff;
+  /* Background color for the entire website, including individual sections */
+  --default-color: #444444;
+  /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #273d4e;
+  /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #ff4a17;
+  /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #ffffff;
+  /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff;
+  /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #e5eaee;  /* The default color of the main navmenu links */
-  --nav-hover-color: #ff4a17; /* Applied to main navmenu links when they are hovered over or active */
-  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
-  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #444444; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ff4a17; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-color: #e5eaee;
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #ff4a17;
+  /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff;
+  /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff;
+  /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #444444;
+  /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #ff4a17;
+  /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -1850,7 +1862,8 @@ section,
 /*圖片跑馬燈*/
 .carousel-inner {
   height: 500px;
-  background-color: #000; /* 或其他顏色，用來填補留白 */
+  background-color: #000;
+  /* 或其他顏色，用來填補留白 */
 }
 
 .carousel-inner img {
@@ -1861,25 +1874,61 @@ section,
 
 /* 文字跑馬燈 */
 .marquee-vertical-container {
-    height: 400px;
-    overflow: hidden;
-    position: relative;
-    background: #f8f9fa;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  background: #f8f9fa;
+}
+
+.marquee-vertical-content {
+  display: flex;
+  flex-direction: column;
+  animation: scrollUp 30s linear infinite;
+}
+
+/* 把內容複製兩份以達到無縫滾動 */
+.marquee-vertical-content>* {
+  padding: 10px 0;
+  white-space: normal;
+}
+
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0);
   }
 
-  .marquee-vertical-content {
-    display: flex;
-    flex-direction: column;
-    animation: scrollUp 30s linear infinite;
+  100% {
+    transform: translateY(-50%);
   }
+}
 
-  /* 把內容複製兩份以達到無縫滾動 */
-  .marquee-vertical-content > * {
-    padding: 10px 0;
-    white-space: normal;
-  }
 
-  @keyframes scrollUp {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-  }
+/* 調整100+ */
+.counter-inline {
+  display: inline-flex;
+  align-items: baseline;
+  /* 或 center，看你想怎麼對齊 */
+  gap: 2px;
+  /* 控制 100 和 + 之間的距離 */
+}
+
+.plus-sign {
+  font-size: 1.5rem;
+  /* 依照你的風格微調大小 */
+  font-weight: bold;
+}
+
+
+/* 隊聚照片固定 */
+.fixed-img-box {
+  aspect-ratio: 4 / 3; /* 可以換成 16 / 9 或 1 / 1 看你想要的比例 */
+  overflow: hidden;
+  border-radius: 8px; /* 可選 */
+}
+
+.fixed-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
