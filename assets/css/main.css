@@ -1932,3 +1932,18 @@ section,
   object-fit: cover;
   display: block;
 }
+
+/* 隊規跑跑圖示 */
+.custom-icon {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* 隊規圖片格式調整 */
+.custom-img-box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
