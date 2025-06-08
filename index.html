@@ -177,8 +177,7 @@
             <div class="stats-item d-flex align-items-center w-100 h-100">
               <i class="bi bi-trophy color-green flex-shrink-0"></i>
               <div>
-                <span id="infinity-counter" data-purecounter-start="0" data-purecounter-end="999"
-                  data-purecounter-duration="2" class="purecounter"></span>
+                <span id="infinity-counter" class="infinity-counter">0</span>
                 <p>獲得無數獎項</p>
               </div>
             </div>
@@ -805,8 +804,8 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-              data-aos-delay="500">
+            <form id="contact-form" action="https://formspree.io/f/mvgrkpbr" method="POST" class="php-email-form"
+              data-aos="fade-up" data-aos-delay="500">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -814,20 +813,11 @@
                 </div>
 
                 <div class="col-md-6">
-                  <input type="email" class="form-control" name="email" placeholder="請輸入您的Email" required>
+                  <input type="email" name="email" class="form-control" placeholder="請輸入您的 Email" required>
                 </div>
 
-                <!-- Subject 選擇 -->
                 <div class="col-md-6">
-                  <select id="subject-select" name="subject" class="form-select" required>
-                    <option value="">請選擇主旨</option>
-                    <option value="入隊申請-競速組">入隊申請-Rush Plus 競速組</option>
-                    <option value="入隊申請-道具組">入隊申請-Rush Plus 道具組</option>
-                    <option value="其他">其他</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <select id="subject-select" name="subject" class="form-select" required>
+                  <select name="available_time" class="form-select" required>
                     <option value="">可以聯繫您的時間</option>
                     <option value="平日(上午)">平日(上午)</option>
                     <option value="平日(中午)">平日(中午)</option>
@@ -835,30 +825,34 @@
                     <option value="假日(上午)">假日(上午)</option>
                     <option value="假日(中午)">假日(中午)</option>
                     <option value="假日(晚上)">假日(晚上)</option>
-
                   </select>
                 </div>
 
-                <!-- 自訂 Subject 輸入 -->
-                <div class="col-md-12" id="custom-subject-group" style="display: none;">
-                  <input type="text" class="form-control" id="custom-subject" placeholder="請輸入自訂主旨">
+                <div class="col-md-6">
+                  <select name="subject" class="form-select" required>
+                    <option value="">請選擇主旨</option>
+                    <option value="入隊申請-競速組">入隊申請-Rush Plus 競速組</option>
+                    <option value="入隊申請-道具組">入隊申請-Rush Plus 道具組</option>
+                    <option value="其他">其他</option>
+                  </select>
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required></textarea>
+                  <textarea name="message" class="form-control" rows="4" placeholder="留言內容" required></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">您的資料已成功提交，謝謝您聯絡我們DN車隊</div>
-
                   <button type="submit">提交</button>
+                </div>
+
+                <!-- 顯示提交狀態訊息 -->
+                <div class="col-md-12 text-center mt-3">
+                  <div id="form-status" style="display:none; color: green; font-weight: bold;"></div>
                 </div>
 
               </div>
             </form>
-          </div><!-- End Contact Form -->
+          </div> <!--表單end-->
 
         </div>
 

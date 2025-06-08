@@ -212,25 +212,69 @@
 
 // karter
 // ------0-999-無限-----
-function replaceWithInfinity() {
-  const counter = document.getElementById("infinity-counter");
+function animateToInfinity() {
+  const el = document.getElementById("infinity-counter");
+  if (!el) return;
 
-  // 如果不存在或已經被替換過，就跳過
-  if (!counter || counter.dataset.infinityReplaced === "true") return;
+  let current = 0;
+  const end = 999;
+  const duration = 2000; // 動畫總時間 2 秒
+  const intervalTime = 20; // 每次更新的間隔 (ms)
+  const steps = duration / intervalTime;
+  const increment = end / steps;
 
-  const checkValue = setInterval(function () {
-    if (counter.textContent === "999") {
-      counter.textContent = "∞";
-      counter.dataset.infinityReplaced = "true"; // 標記已替換
-      clearInterval(checkValue);
+  const interval = setInterval(() => {
+    current += increment;
+    if (current >= end) {
+      el.textContent = "∞";
+      clearInterval(interval);
+    } else {
+      el.textContent = Math.floor(current);
     }
-  }, 100);
+  }, intervalTime);
 }
 
-// 第一次載入執行
-document.addEventListener("DOMContentLoaded", replaceWithInfinity);
+document.addEventListener("DOMContentLoaded", animateToInfinity);
 
-// 如果你使用 SPA 或動態區塊更新，也應該呼叫這個函式
-// 例如頁面切換、modal 開啟後等
 
+// 提交表單
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // 防止預設跳轉
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    }).then(response => {
+      if (response.ok) {
+        status.style.color = "green";
+        status.textContent = "已成功提交，感謝您聯絡我們DN車隊！";
+        status.style.display = "block";
+        form.reset(); // 清空表單
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            status.style.color = "red";
+            status.textContent = data["errors"].map(error => error.message).join(", ");
+            status.style.display = "block";
+          } else {
+            throw new Error("提交失敗，請稍後再試");
+          }
+        });
+      }
+    }).catch(error => {
+      status.style.color = "red";
+      status.textContent = error.message;
+      status.style.display = "block";
+    });
+  });
+});
 
