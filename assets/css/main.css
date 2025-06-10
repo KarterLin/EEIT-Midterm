@@ -1947,3 +1947,8 @@ section,
   padding-left: 10px;
   padding-right: 10px;
 }
+
+/* footer 靠右 */
+.footer .footer-links ul li {
+  justify-content: flex-end; /* 將 li 內的圖示與連結向右排列 */
+}
